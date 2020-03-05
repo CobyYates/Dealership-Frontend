@@ -8,6 +8,8 @@ export default new Vuex.Store({
     state: {
         cartItems: 0,
         showCartItems: false,
+        darkMode: true,
+        vehicles: []
     },
     getters: {
         

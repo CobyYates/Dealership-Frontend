@@ -24,6 +24,11 @@
         <v-subheader class="mt-4 grey--text text--darken-1"
           >FILTERS</v-subheader
         >
+        <v-spacer/>
+        <v-list-item>
+          <v-switch v-model="$vuetify.theme.dark" primary color="red" label="Dark Mode"/>
+        </v-list-item>
+
         <!-- <v-list>
           <v-list-item
             v-for="item in items2"
@@ -40,7 +45,6 @@
           </v-list-item>
         </v-list> -->
       </v-list>
-
     </v-navigation-drawer>
 
     <v-app-bar app clipped-left color="red" dense>
@@ -50,17 +54,16 @@
         <span class="title font-weight-light">DRIFTY</span>
       </v-toolbar-title>
       <v-spacer />
-      <v-row
-        style="max-width: 100px"
-      >
-      <v-badge
-        :content="this.$store.state.cartItems"
-        :value="this.$store.state.showCartItems"
-        color="green"
-        class="mx-4"
-        overlap>      
-        <v-icon>mdi-cart-outline</v-icon>
-        </v-badge>      
+      <v-row style="max-width: 100px" class="d-flex">
+        <v-badge
+          :content="this.$store.state.cartItems"
+          :value="this.$store.state.showCartItems"
+          color="green"
+          class="mx-4"
+          overlap
+        >
+          <v-icon>mdi-cart-outline</v-icon>
+        </v-badge>
       </v-row>
     </v-app-bar>
 
@@ -83,8 +86,14 @@ export default {
   },
   data: () => ({
     drawer: null,
+    mode: true,
     items: [
-      { icon: "mdi-car-multiple", text: "ALL VEHICLES", color: "blue", to: "/home" },
+      {
+        icon: "mdi-car-multiple",
+        text: "ALL VEHICLES",
+        color: "blue",
+        to: "/home"
+      },
       {
         icon: "mdi-heart",
         text: "MY FAVORITES",
@@ -101,10 +110,10 @@ export default {
       { picture: 48, text: "Xbox Ahoy" },
       { picture: 58, text: "Nokia" },
       { picture: 78, text: "MKBHD" }
-    ],
+    ]
   }),
   created() {
-    this.$vuetify.theme.dark = true;
+    // this.$vuetify.theme.dark = this.mode;
   }
 };
 </script>

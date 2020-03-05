@@ -13,10 +13,10 @@
       >
         <v-card width="8000" class="mt-4 mx-4 elevation-8">
           <v-img :src="car.images[0].image"></v-img>
-          <v-card-title class="title font-weight-light">
+          <v-card-title class="title font-weight-regular">
             {{ car.year }} {{ car.make }} {{ car.model }}
           </v-card-title>
-          <v-card-text>${{ car.price }}</v-card-text>
+          <v-card-text class="title font-weight-regular">${{ car.price }}</v-card-text>
           <v-divider />
           <v-row class="ml-auto" background-color="red">
             <v-col>
@@ -36,7 +36,7 @@
               <h3>{{ car.weight }} lbs</h3>
             </v-col>
             <v-row>
-              <v-col class="d-flex justify-space-around">
+              <v-col class="d-flex justify-space-around justify-center">
                 <v-btn
                   dark
                   small
@@ -49,7 +49,7 @@
                 <v-btn
                   small
                   dark
-                  color="success"
+                  color="green"
                   outlined
                   @click="dialog = true"
                 >
@@ -73,24 +73,20 @@
                 <!-- Carousel start -->
                 <div>
                   <v-carousel
-                    touch
                     hide-delimiter-background
                     hide-arrow-background
                     v-model="model"
                     height="300px"
                     delimiter-icon="mdi-minus"
                   >
-                    <v-carousel-item v-for="image in car.images" :key="image">
-                      <v-sheet :color="color" height="100%" tile>
+                    <v-carousel-item v-for="image in car.images" :key="image.id">
+                      <v-sheet height="100%" tile>
                         <v-row
                           class="fill-height"
                           align="center"
                           justify="center"
                         >
                           <v-img :src="image.image"></v-img>
-                          <!-- <div class="display-1 font-weight-light">
-                            Vehicle Image {{ i + 1 }}
-                          </div> -->
                         </v-row>
                       </v-sheet>
                     </v-carousel-item>
@@ -174,9 +170,9 @@ export default {
         power: "1,160",
         weight: "3,075",
         images: [
-          { image: "https://i.imgur.com/Xbf6slT.jpg" },
-          { image: "https://i.imgur.com/Xbf6slT.jpg" },
-          { image: "https://i.imgur.com/Xbf6slT.jpg" }
+          { image: "https://i.imgur.com/Xbf6slT.jpg", id: '1' },
+          { image: "https://i.imgur.com/Xbf6slT.jpg", id: '2' },
+          { image: "https://i.imgur.com/Xbf6slT.jpg", id: '3' }
         ],
         engine: "V8",
         torque: "944",
@@ -198,9 +194,9 @@ export default {
         power: "903",
         weight: "3,411",
         images: [
-          { image: "https://i.imgur.com/BgNCGDU.jpg" },
-          { image: "https://i.imgur.com/BgNCGDU.jpg" },
-          { image: "https://i.imgur.com/BgNCGDU.jpg" }
+          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '1' },
+          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '2' },
+          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '3' }
         ],
         engine: "V8",
         torque: "664",
@@ -222,9 +218,9 @@ export default {
         power: "720",
         weight: "2,937",
         images: [
-          { image: "https://i.imgur.com/WT7b89f.jpg" },
-          { image: "https://i.imgur.com/WT7b89f.jpg" },
-          { image: "https://i.imgur.com/WT7b89f.jpg" }
+          { image: "https://i.imgur.com/WT7b89f.jpg", id: '1' },
+          { image: "https://i.imgur.com/WT7b89f.jpg", id: '2' },
+          { image: "https://i.imgur.com/WT7b89f.jpg", id: '3' }
         ],
         engine: "V8",
         torque: "664",
@@ -246,9 +242,9 @@ export default {
         power: "690",
         weight: "3,472",
         images: [
-          { image: "https://i.imgur.com/rbZQzvq.jpg" },
-          { image: "https://i.imgur.com/rbZQzvq.jpg" },
-          { image: "https://i.imgur.com/rbZQzvq.jpg" }
+          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '1' },
+          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '2' },
+          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '3' }
         ],
         engine: "V12",
         torque: "507",
@@ -270,9 +266,9 @@ export default {
         power: "630",
         weight: "3,424",
         images: [
-          { image: "https://i.imgur.com/s8P2tL0.jpg" },
-          { image: "https://i.imgur.com/s8P2tL0.jpg" },
-          { image: "https://i.imgur.com/s8P2tL0.jpg" }
+          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '1' },
+          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '2' },
+          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '3' }
         ],
         engine: "V10",
         torque: "442",
@@ -292,6 +288,8 @@ export default {
     updateCart() {
       this.$store.state.cartItems++;
       this.$store.state.showCartItems = true;
+      this.$store.state.vehicles.push(this.car)
+      console.log(this.$store.state.vehicles)
     }
   }
 };
@@ -299,6 +297,6 @@ export default {
 
 <style>
 h3 {
-  font-weight: 300;
+  font-weight: 400;
 }
 </style>
