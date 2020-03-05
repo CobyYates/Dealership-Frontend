@@ -79,7 +79,7 @@
                     height="300px"
                     delimiter-icon="mdi-minus"
                   >
-                    <v-carousel-item v-for="image in car.images" :key="image.id">
+                    <!-- <v-carousel-item v-for="image in car.images" :key="image.id">
                       <v-sheet height="100%" tile>
                         <v-row
                           class="fill-height"
@@ -89,7 +89,7 @@
                           <v-img :src="image.image"></v-img>
                         </v-row>
                       </v-sheet>
-                    </v-carousel-item>
+                    </v-carousel-item> -->
                   </v-carousel>
                 </div>
                 <!-- Carousel end -->
