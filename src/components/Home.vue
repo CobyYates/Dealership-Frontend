@@ -1,64 +1,158 @@
 <template>
   <v-content>
     <v-row>
-      <v-col class="d-flex flex-row">
-        <v-card
-          width="300"
-          class="mt-4 mx-4 elevation-8"
-          v-for="car in cars"
-          :key="car.model">
-          <v-img :src="car.image"></v-img>
+      <v-col
+        class="d-flex flex-row"
+        xl="3"
+        lg="3"
+        md="4"
+        sm="6"
+        xs="12"
+        v-for="car in cars"
+        :key="car.model"
+      >
+        <v-card width="8000" class="mt-4 mx-4 elevation-8">
+          <v-img :src="car.images[0].image"></v-img>
           <v-card-title class="title font-weight-light">
-              {{ car.year }} {{ car.make }} {{ car.model }}
-            </v-card-title>
+            {{ car.year }} {{ car.make }} {{ car.model }}
+          </v-card-title>
           <v-card-text>${{ car.price }}</v-card-text>
           <v-divider />
           <v-row class="ml-auto" background-color="red">
-              <v-col>
-                <h3>Power:</h3>
-                <h3>Torque:</h3>
-                <h3>Engine:</h3>
-                <h3>0-60:</h3>
-                <h3>Top Speed:</h3>
-                <h3>Weight:</h3>
-              </v-col>
-              <v-col>
-                <h3>{{ car.power }} hp</h3>
-                <h3>{{ car.torque }} foot lbs</h3>
-                <h3>{{ car.engine }}</h3>
-                <h3>{{ car.sixty }} seconds</h3>
-                <h3>{{ car.top_speed }} mph</h3>
-                <h3>{{ car.weight }} lbs</h3>
+            <v-col>
+              <h3>Power:</h3>
+              <h3>Torque:</h3>
+              <h3>Engine:</h3>
+              <h3>0-60:</h3>
+              <h3>Top Speed:</h3>
+              <h3>Weight:</h3>
+            </v-col>
+            <v-col>
+              <h3>{{ car.power }} hp</h3>
+              <h3>{{ car.torque }} foot lbs</h3>
+              <h3>{{ car.engine }}</h3>
+              <h3>{{ car.sixty }} seconds</h3>
+              <h3>{{ car.top_speed }} mph</h3>
+              <h3>{{ car.weight }} lbs</h3>
+            </v-col>
+            <v-row>
+              <v-col class="d-flex justify-space-around">
+                <v-btn
+                  dark
+                  small
+                  color="red lighten-1"
+                  outlined
+                  @click="updateCart"
+                >
+                  <v-icon left>mdi-cart-outline</v-icon> Add to cart
+                </v-btn>
+                <v-btn
+                  small
+                  dark
+                  color="success"
+                  outlined
+                  @click="dialog = true"
+                >
+                  <v-icon left>mdi-format-list-bulleted</v-icon> View
+                </v-btn>
               </v-col>
             </v-row>
-            <v-row justify="center">
-    <v-dialog v-model="dialog" width="600px">
-      <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Add to card</v-btn>
-      </template>
-      <v-card>
-        <v-card-title>
-          <span class="headline">Use Google's location service?</span>
-        </v-card-title>
-        <v-card-text>Lorem ipsum dolor sit amet, semper quis, sapien id natoque elit. Nostra urna at, magna at neque sed sed ante imperdiet, dolor mauris cursus velit, velit non, sem nec. Volutpat sem ridiculus placerat leo, augue in, duis erat proin condimentum in a eget, sed fermentum sed vestibulum varius ac, vestibulum volutpat orci ut elit eget tortor. Ultrices nascetur nulla gravida ante arcu. Pharetra rhoncus morbi ipsum, nunc tempor debitis, ipsum pellentesque, vitae id quam ut mauris dui tempor, aptent non. Quisque turpis. Phasellus quis lectus luctus orci eget rhoncus. Amet donec vestibulum mattis commodo, nulla aliquet, nibh praesent, elementum nulla. Sit lacus pharetra tempus magna neque pellentesque, nulla vel erat.
-          Justo ex quisque nulla accusamus venenatis, sed quis. Nibh phasellus gravida metus in, fusce aenean ut erat commodo eros. Ut turpis, dui integer, nonummy pede placeat nec in sit leo. Faucibus porttitor illo taciti odio, amet viverra scelerisque quis quis et tortor, curabitur morbi a. Enim tempor at, rutrum elit condimentum, amet rutrum vitae tempor torquent nunc. Praesent vestibulum integer maxime felis. Neque aenean quia vitae nostra, tempus elit enim id dui, at egestas pulvinar. Integer libero vestibulum, quis blandit scelerisque mattis fermentum nulla, tortor donec vestibulum dolor amet eget, elit nullam. Aliquam leo phasellus aliquam curabitur metus a, nulla justo mattis duis interdum vel, mollis vitae et id, vestibulum erat ridiculus sit pulvinar justo sed. Vehicula convallis, et nulla wisi, amet vestibulum risus, quam ac egestas.
-          Et vitae, nulla gravida erat scelerisque nullam nunc pellentesque, a dictumst cras augue, purus imperdiet non. Varius montes cursus varius vel tortor, nec leo a qui, magni cras, velit vel consectetuer lobortis vel. Nibh erat et wisi felis leo porttitor, sapien nibh sapien pede mi, sed eget porttitor, repellendus arcu ac quis. Luctus vulputate aut est sem magna, placerat accumsan nunc vestibulum ipsum ac auctor, maecenas lorem in ut nec mauris tortor, doloribus varius sem tortor vestibulum mollis, eleifend tortor felis tempus lacus eu eu. Eleifend vel eu, nullam maecenas mauris nec nunc euismod, tortor porta ridiculus potenti, massa tristique nam magna, et wisi placerat et erat ante. Eget pede erat in facilisis, fermentum venenatis sodales. Ac tortor sociis et non animi tristique, rhoncus malesuada, ut arcu volutpat scelerisque sollicitudin, elit curabitur dui pede purus dolor, integer aenean risus taciti nulla eleifend accumsan. At pulvinar diam parturient, interdum mi velit aliquet et a. Arcu at ac placerat eget justo semper, purus sociis curabitur mi ipsum consequat ut, mollis vestibulum, est ante ornare lacus sem. Neque magna mauris, commodo quisque, praesent semper suscipit lobortis nam. Justo malesuada cursus ac nunc litora nunc. Tellus ac, in lobortis nunc, montes lectus purus fermentum.
-          Ac sit wisi. Sodales aliquam, sed vestibulum nullam arcu sit risus arcu, id luctus vitae lorem nibh, integer nec nullam class cursus mi, purus arcu lectus. Vel ante suscipit volutpat potenti mattis sed, wisi eu placerat aliquam erat, lectus morbi lobortis at assumenda. Consequat neque purus ipsum voluptas odio, netus vestibulum ut nec, suspendisse pellentesque nec enim in. Wisi dictum sed semper a, ipsum erat tellus habitasse est, erat sem ornare, vitae quisque ultricies. Dui sed blandit. Tempor et faucibus justo sed luctus, nec vitae vitae. Nunc nibh pede, ipsum vestibulum aenean leo ante ultricies, nam cras quis sed penatibus amet. In mauris a. Integer metus mauris tortor, et rutrum vestibulum ultricies, ut phasellus in ullamcorper ut mollit, eu justo. Cursus pretium venenatis.
-          Cras pellentesque vel sodales accumsan aenean. Feugiat metus sit nec in aliquet amet, porttitor pretium vulputate massa. Consequat ipsum luctus quisque adipiscing libero. Wisi sollicitudin. Eget vitae ac lobortis, lorem natoque vestibulum et, aliquet faucibus at morbi nibh, vel condimentum. Massa unde orci sed id sed, odio donec congue nec praesent amet. Hymenaeos velit lacus, quis vivamus libero tempus duis, eu nisi eu, ipsum at accumsan pede justo morbi donec, massa et libero sit risus neque tortor. Ut sed sed etiam hendrerit dapibus, quis metus suspendisse nibh.
-          Fringilla tempor felis augue magna. Cum arcu a, id vitae. Pellentesque pharetra in cras sociis adipiscing est. Nibh nec mattis at maecenas, nisl orci aliquam nulla justo egestas venenatis, elementum duis vel porta eros, massa vitae, eligendi imperdiet amet. Nec neque luctus suscipit, justo sem praesent, ut nisl quisque, volutpat torquent wisi tellus aliquam reprehenderit, curabitur cras at quis massa porttitor mauris. Eros sed ultrices. Amet dignissim justo urna feugiat mauris litora, etiam accumsan, lobortis a orci suspendisse. Semper ac mauris, varius bibendum pretium, orci urna nunc ullamcorper auctor, saepe sem integer quam, at feugiat egestas duis. Urna ligula ante. Leo elementum nonummy. Sagittis mauris est in ipsum, nulla amet non justo, proin id potenti platea posuere sit ut, nunc sit erat bibendum. Nibh id auctor, ab nulla vivamus ultrices, posuere morbi nunc tellus gravida vivamus.
-          Mauris nec, facilisi quam fermentum, ut mauris integer, orci tellus tempus diam ut in pellentesque. Wisi faucibus tempor et odio leo diam, eleifend quis integer curabitur sit scelerisque ac, mauris consequat luctus quam penatibus fringilla dis, vitae lacus in, est eu ac tempus. Consectetuer amet ipsum amet dui, sed blandit id sed. Tellus integer, dignissim id pede sodales quis, felis dolorem id mauris orci, orci tempus ut. Nullam hymenaeos. Curabitur in a, tortor ut praesent placerat tincidunt interdum, ac dignissim metus nonummy hendrerit wisi, etiam ut.
-          Semper praesent integer fusce, tortor suspendisse, augue ligula orci ante asperiores ullamcorper. In sit per mi sed sed, mi vestibulum mus nam, morbi mauris neque vitae aliquam proin senectus. Ac amet arcu mollis ante congue elementum, inceptos eget optio quam pellentesque quis lobortis, sollicitudin sed vestibulum sollicitudin, lectus parturient nullam, leo orci ligula ultrices. At tincidunt enim, suspendisse est sit sem ac. Amet tellus molestie est purus magna augue, non etiam et in wisi id. Non commodo, metus lorem facilisi lobortis ac velit, montes neque sed risus consectetuer fringilla dolor. Quam justo et integer aliquam, cursus nulla enim orci, nam cursus adipiscing, integer torquent non, fringilla per maecenas. Libero ipsum sed tellus purus et. Duis molestie placerat erat donec ut. Dolor enim erat massa faucibus ultrices in, ante ultricies orci lacus, libero consectetuer mauris magna feugiat neque dapibus, donec pretium et. Aptent dui, aliquam et et amet nostra ligula.
-          Augue curabitur duis dui volutpat, tempus sed ut pede donec. Interdum luctus, lectus nulla aenean elit, id sit magna, vulputate ultrices pellentesque vel id fermentum morbi. Tortor et. Adipiscing augue lorem cum non lacus, rutrum sodales laoreet duis tortor, modi placerat facilisis et malesuada eros ipsum, vehicula tempus. Ac vivamus amet non aliquam venenatis lectus, sociosqu adipiscing consequat nec arcu odio. Blandit orci nec nec, posuere in pretium, enim ut, consectetuer nullam urna, risus vel. Nullam odio vehicula massa sed, etiam sociis mauris, lacus ullamcorper, libero imperdiet non sodales placerat justo vehicula. Nec morbi imperdiet. Fermentum sem libero iaculis bibendum et eros, eget maecenas non nunc, ad pellentesque. Ut nec diam elementum interdum. Elementum vitae tellus lacus vitae, ipsum phasellus, corporis vehicula in ac sed massa vivamus, rutrum elit, ultricies metus volutpat.
-          Semper wisi et, sollicitudin nunc vestibulum, cursus accumsan nunc pede tempus mi ipsum, ligula sed. Non condimentum ac dolor sit. Mollis eu aliquam, vel mattis mollis massa ut dolor ante, tempus lacinia arcu. Urna vestibulum lorem, nulla fermentum, iaculis ut congue ac vivamus. Nam libero orci, pulvinar nulla, enim pellentesque consectetuer leo, feugiat rhoncus rhoncus vel. Magna sociosqu donec, dictum cursus ullamcorper viverra. Ultricies quis orci lorem, suspendisse ut vestibulum integer, purus sed lorem pulvinar habitasse turpis.
-          +</v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="green darken-1" text @click="dialog = false">Disagree</v-btn>
-          <v-btn color="green darken-1" text @click="dialog = false">Agree</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
+          </v-row>
+          <v-row justify="center">
+            <v-dialog v-model="dialog" width="600px">
+              <template> </template>
+              <v-card>
+                <v-card-title>
+                  <span class="headline"
+                    >{{ car.year }} {{ car.make }} {{ car.model }}
+                    <span class="title font-weight-light"
+                      >({{ car.vehicleType }})</span
+                    ></span
+                  >
+                </v-card-title>
+                <!-- Carousel start -->
+                <div>
+                  <v-carousel
+                    touch
+                    hide-delimiter-background
+                    hide-arrow-background
+                    v-model="model"
+                    height="300px"
+                    delimiter-icon="mdi-minus"
+                  >
+                    <v-carousel-item v-for="image in car.images" :key="image">
+                      <v-sheet :color="color" height="100%" tile>
+                        <v-row
+                          class="fill-height"
+                          align="center"
+                          justify="center"
+                        >
+                          <v-img :src="image.image"></v-img>
+                          <!-- <div class="display-1 font-weight-light">
+                            Vehicle Image {{ i + 1 }}
+                          </div> -->
+                        </v-row>
+                      </v-sheet>
+                    </v-carousel-item>
+                  </v-carousel>
+                </div>
+                <!-- Carousel end -->
+                <v-card-text>
+                  <p class="text-center title mt-4">Details for this vehicle</p>
+                  <v-row>
+                    <v-col>
+                      <h3>Power:</h3>
+                      <h3>Torque:</h3>
+                      <h3>Engine:</h3>
+                      <h3>0-60:</h3>
+                      <h3>Top Speed:</h3>
+                      <h3>Weight:</h3>
+                    </v-col>
+                    <v-col>
+                      <h3>{{ car.power }} hp</h3>
+                      <h3>{{ car.torque }} foot lbs</h3>
+                      <h3>{{ car.engine }}</h3>
+                      <h3>{{ car.sixty }} seconds</h3>
+                      <h3>{{ car.top_speed }} mph</h3>
+                      <h3>{{ car.weight }} lbs</h3>
+                    </v-col>
+                    <v-divider vertical />
+                    <v-col>
+                      <h3>Mileage:</h3>
+                      <h3>Condition:</h3>
+                      <h3>Title:</h3>
+                      <h3>VIN:</h3>
+                      <h3>Transmission:</h3>
+                      <h3>Drive Type:</h3>
+                    </v-col>
+                    <v-col>
+                      <h3>{{ car.mileage }} miles</h3>
+                      <h3>{{ car.condition }}</h3>
+                      <h3>{{ car.title }}</h3>
+                      <h3>{{ car.vin }}</h3>
+                      <h3>{{ car.transmission }}</h3>
+                      <h3>{{ car.driveType }}</h3>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    class=""
+                    dark
+                    color="red lighten-1"
+                    outlined
+                    @click="updateCart"
+                  >
+                    <v-icon left>mdi-cart-outline</v-icon> Add to cart
+                  </v-btn>
+                  <v-btn color="green darken-1" text @click="dialog = false"
+                    >close</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+          </v-row>
         </v-card>
       </v-col>
     </v-row>
@@ -68,6 +162,9 @@
 <script>
 export default {
   data: () => ({
+    dialog: false,
+    model: 0,
+    colors: ["primary", "secondary", "yellow darken-2", "red", "orange"],
     cars: [
       {
         make: "Koenigsegg",
@@ -76,11 +173,22 @@ export default {
         top_speed: "278",
         power: "1,160",
         weight: "3,075",
-        image: "https://i.imgur.com/Xbf6slT.jpg",
+        images: [
+          { image: "https://i.imgur.com/Xbf6slT.jpg" },
+          { image: "https://i.imgur.com/Xbf6slT.jpg" },
+          { image: "https://i.imgur.com/Xbf6slT.jpg" }
+        ],
         engine: "V8",
         torque: "944",
         sixty: "2.9",
-        price: "2,500,000"
+        price: "2,500,000",
+        mileage: "20,000",
+        condition: "New",
+        title: "Clean",
+        vin: "135135153483153A",
+        transmission: "Manual",
+        driveType: "AWD",
+        vehicleType: "Super Car"
       },
       {
         make: "McLaren",
@@ -89,11 +197,22 @@ export default {
         top_speed: "217",
         power: "903",
         weight: "3,411",
-        image: "https://i.imgur.com/BgNCGDU.jpg",
+        images: [
+          { image: "https://i.imgur.com/BgNCGDU.jpg" },
+          { image: "https://i.imgur.com/BgNCGDU.jpg" },
+          { image: "https://i.imgur.com/BgNCGDU.jpg" }
+        ],
         engine: "V8",
         torque: "664",
         sixty: "2.7",
-        price: "1,150,000"
+        price: "1,150,000",
+        mileage: "20,000",
+        condition: "New",
+        title: "Clean",
+        vin: "135135153483153A",
+        transmission: "Manual",
+        driveType: "AWD",
+        vehicleType: "Super Car"
       },
       {
         make: "McLaren",
@@ -102,19 +221,84 @@ export default {
         top_speed: "",
         power: "720",
         weight: "2,937",
-        image: "https://i.imgur.com/WT7b89f.jpg",
+        images: [
+          { image: "https://i.imgur.com/WT7b89f.jpg" },
+          { image: "https://i.imgur.com/WT7b89f.jpg" },
+          { image: "https://i.imgur.com/WT7b89f.jpg" }
+        ],
         engine: "V8",
         torque: "664",
         sixty: "2.8",
-        price: "284,745"
+        price: "284,745",
+        mileage: "20,000",
+        condition: "New",
+        title: "Clean",
+        vin: "135135153483153A",
+        transmission: "Manual",
+        driveType: "AWD",
+        vehicleType: "Super Car"
+      },
+      {
+        make: "Lamborghini",
+        model: "Aventador",
+        year: "2019",
+        top_speed: "217",
+        power: "690",
+        weight: "3,472",
+        images: [
+          { image: "https://i.imgur.com/rbZQzvq.jpg" },
+          { image: "https://i.imgur.com/rbZQzvq.jpg" },
+          { image: "https://i.imgur.com/rbZQzvq.jpg" }
+        ],
+        engine: "V12",
+        torque: "507",
+        sixty: "2.9",
+        price: "417,826",
+        mileage: "20,000",
+        condition: "New",
+        title: "Clean",
+        vin: "135135153483153A",
+        transmission: "Manual",
+        driveType: "AWD",
+        vehicleType: "Super Car"
+      },
+      {
+        make: "Lamborghini",
+        model: "Huracán",
+        year: "2020",
+        top_speed: "199",
+        power: "630",
+        weight: "3,424",
+        images: [
+          { image: "https://i.imgur.com/s8P2tL0.jpg" },
+          { image: "https://i.imgur.com/s8P2tL0.jpg" },
+          { image: "https://i.imgur.com/s8P2tL0.jpg" }
+        ],
+        engine: "V10",
+        torque: "442",
+        sixty: "2.5",
+        price: "261,274",
+        mileage: "20,000",
+        condition: "New",
+        title: "Clean",
+        vin: "135135153483153A",
+        transmission: "Manual",
+        driveType: "AWD",
+        vehicleType: "Super Car"
       }
     ]
-  })
+  }),
+  methods: {
+    updateCart() {
+      this.$store.state.cartItems++;
+      this.$store.state.showCartItems = true;
+    }
+  }
 };
 </script>
 
 <style>
 h3 {
-    font-weight: 300;
+  font-weight: 300;
 }
 </style>

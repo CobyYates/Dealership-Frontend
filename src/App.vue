@@ -47,20 +47,25 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-icon class="mx-4">mdi-car-traction-control</v-icon>
       <v-toolbar-title class="mr-12 align-center">
-        <span class="title font-weight-light">DRIFT</span>
-        <span class="title font-weight-regular">VEHICLES</span>
+        <span class="title font-weight-light">DRIFTY</span>
       </v-toolbar-title>
       <v-spacer />
       <v-row
         style="max-width: 100px"
       >
-        <v-icon class="mx-4">mdi-cart-outline</v-icon>
-        <span>Cart</span>
+      <v-badge
+        :content="this.$store.state.cartItems"
+        :value="this.$store.state.showCartItems"
+        color="green"
+        class="mx-4"
+        overlap>      
+        <v-icon>mdi-cart-outline</v-icon>
+        </v-badge>      
       </v-row>
     </v-app-bar>
 
     <v-content>
-      <v-container class="fill-height">
+      <v-container fluid class="fill-height">
         <v-row justify="center" align="center">
           <v-col class="shrink">
             <router-view></router-view>
