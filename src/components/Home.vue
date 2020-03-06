@@ -8,11 +8,25 @@
         md="4"
         sm="6"
         xs="12"
-        v-for="car in cars"
+        v-for="(car, i) in cars"
         :key="car.model"
       >
         <v-card width="8000" class="mt-4 mx-4 elevation-8">
           <v-img :src="car.images[0].image"></v-img>
+          <!-- <v-carousel
+                    hide-delimiter-background
+                    hide-arrow-background
+                    v-model="model"
+                    height="130px"
+                    delimiter-icon="mdi-minus"
+                  >
+                    <v-carousel-item 
+                      v-for="image in car.images" 
+                      :key="image.id"
+                      :src="image.image">
+                      
+                    </v-carousel-item>
+                  </v-carousel> -->
           <v-card-title class="title font-weight-regular">
             {{ car.year }} {{ car.make }} {{ car.model }}
           </v-card-title>
@@ -35,6 +49,7 @@
               <h3>{{ car.top_speed }} mph</h3>
               <h3>{{ car.weight }} lbs</h3>
             </v-col>
+          </v-row>
             <v-row>
               <v-col class="d-flex justify-space-around justify-center">
                 <v-btn
@@ -42,7 +57,7 @@
                   small
                   color="red lighten-1"
                   outlined
-                  @click="updateCart"
+                  @click="updateCart(car)"
                 >
                   <v-icon left>mdi-cart-outline</v-icon> Add to cart
                 </v-btn>
@@ -57,9 +72,11 @@
                 </v-btn>
               </v-col>
             </v-row>
-          </v-row>
           <v-row justify="center">
-            <v-dialog v-model="dialog" width="600px">
+            <v-dialog 
+              v-model="dialog" 
+              width="600px"
+              :key="i">
               <template> </template>
               <v-card>
                 <v-card-title>
@@ -79,17 +96,12 @@
                     height="300px"
                     delimiter-icon="mdi-minus"
                   >
-                    <!-- <v-carousel-item v-for="image in car.images" :key="image.id">
-                      <v-sheet height="100%" tile>
-                        <v-row
-                          class="fill-height"
-                          align="center"
-                          justify="center"
-                        >
-                          <v-img :src="image.image"></v-img>
-                        </v-row>
-                      </v-sheet>
-                    </v-carousel-item> -->
+                    <v-carousel-item 
+                      v-for="image in car.images" 
+                      :key="image.id"
+                      :src="image.image">
+                      
+                    </v-carousel-item>
                   </v-carousel>
                 </div>
                 <!-- Carousel end -->
@@ -167,10 +179,11 @@ export default {
         model: "Agera RS",
         year: "2018",
         top_speed: "278",
+        image: 'https://i.imgur.com/Xbf6slT.jpg',
         power: "1,160",
         weight: "3,075",
         images: [
-          { image: "https://i.imgur.com/Xbf6slT.jpg", id: '1' },
+          { image: 'https://i.imgur.com/Xbf6slT.jpg', id: '1' },
           { image: "https://i.imgur.com/Xbf6slT.jpg", id: '2' },
           { image: "https://i.imgur.com/Xbf6slT.jpg", id: '3' }
         ],
@@ -192,11 +205,12 @@ export default {
         year: "2015",
         top_speed: "217",
         power: "903",
+        image: "https://i.imgur.com/BgNCGDU.jpg",
         weight: "3,411",
         images: [
-          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '1' },
-          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '2' },
-          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '3' }
+          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '4' },
+          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '5' },
+          { image: "https://i.imgur.com/BgNCGDU.jpg", id: '6' }
         ],
         engine: "V8",
         torque: "664",
@@ -216,11 +230,12 @@ export default {
         year: "2020",
         top_speed: "",
         power: "720",
+        image: "https://i.imgur.com/WT7b89f.jpg",
         weight: "2,937",
         images: [
-          { image: "https://i.imgur.com/WT7b89f.jpg", id: '1' },
-          { image: "https://i.imgur.com/WT7b89f.jpg", id: '2' },
-          { image: "https://i.imgur.com/WT7b89f.jpg", id: '3' }
+          { image: "https://i.imgur.com/WT7b89f.jpg", id: '7' },
+          { image: "https://i.imgur.com/WT7b89f.jpg", id: '8' },
+          { image: "https://i.imgur.com/WT7b89f.jpg", id: '9' }
         ],
         engine: "V8",
         torque: "664",
@@ -240,11 +255,12 @@ export default {
         year: "2019",
         top_speed: "217",
         power: "690",
+        image: "https://i.imgur.com/rbZQzvq.jpg",
         weight: "3,472",
         images: [
-          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '1' },
-          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '2' },
-          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '3' }
+          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '10' },
+          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '11' },
+          { image: "https://i.imgur.com/rbZQzvq.jpg", id: '12' }
         ],
         engine: "V12",
         torque: "507",
@@ -264,11 +280,12 @@ export default {
         year: "2020",
         top_speed: "199",
         power: "630",
+        image: "https://i.imgur.com/s8P2tL0.jpg",
         weight: "3,424",
         images: [
-          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '1' },
-          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '2' },
-          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '3' }
+          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '13' },
+          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '14' },
+          { image: "https://i.imgur.com/s8P2tL0.jpg", id: '15' }
         ],
         engine: "V10",
         torque: "442",
@@ -285,10 +302,11 @@ export default {
     ]
   }),
   methods: {
-    updateCart() {
+    updateCart(vehicle) {
+      console.log(vehicle)
       this.$store.state.cartItems++;
       this.$store.state.showCartItems = true;
-      this.$store.state.vehicles.push(this.car)
+      this.$store.state.vehicles.push(vehicle)
       console.log(this.$store.state.vehicles)
     }
   }

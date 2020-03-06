@@ -1,9 +1,9 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app clipped>
+    <v-navigation-drawer v-model="drawer" app clipped disable-resize-watcher temporary>
       <v-list dense>
-        <v-list-item v-for="item in items" :key="item.text" link>
-          <v-list-item-action :to="item.to">
+        <v-list-item :to="item.to" v-for="item in items" :key="item.text" link>
+          <v-list-item-action>
             <v-icon :color="item.color">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
@@ -28,22 +28,6 @@
         <v-list-item>
           <v-switch v-model="$vuetify.theme.dark" primary color="red" label="Dark Mode"/>
         </v-list-item>
-
-        <!-- <v-list>
-          <v-list-item
-            v-for="item in items2"
-            :key="item.text"
-            link
-          >
-            <v-list-item-avatar>
-              <img
-                :src="`https://randomuser.me/api/portraits/men/${item.picture}.jpg`"
-                alt=""
-              >
-            </v-list-item-avatar>
-            <v-list-item-title v-text="item.text" />
-          </v-list-item>
-        </v-list> -->
       </v-list>
     </v-navigation-drawer>
 
@@ -54,23 +38,27 @@
         <span class="title font-weight-light">DRIFTY</span>
       </v-toolbar-title>
       <v-spacer />
-      <v-row style="max-width: 100px" class="d-flex">
-        <v-badge
+      <v-row style="max-width: 150px" class="d-flex">
+        <v-btn dark text to="/cart">
+          <v-badge
           :content="this.$store.state.cartItems"
           :value="this.$store.state.showCartItems"
           color="green"
           class="mx-4"
           overlap
         >
-          <v-icon>mdi-cart-outline</v-icon>
-        </v-badge>
+          <v-icon to="/cart">mdi-cart-outline</v-icon>
+        </v-badge>cart
+        <!-- <v-icon dark right>mdi-cart-outline</v-icon> -->
+      </v-btn>
+        
       </v-row>
     </v-app-bar>
 
     <v-content>
       <v-container fluid class="fill-height">
         <v-row justify="center" align="center">
-          <v-col class="shrink">
+          <v-col class="grow" justify="center" align="center">
             <router-view></router-view>
           </v-col>
         </v-row>
@@ -92,13 +80,13 @@ export default {
         icon: "mdi-car-multiple",
         text: "ALL VEHICLES",
         color: "blue",
-        to: "/home"
+        to: '/'
       },
       {
         icon: "mdi-heart",
         text: "MY FAVORITES",
         color: "pink lighten-2",
-        to: ""
+        to: "/favorites"
       },
       { icon: "mdi-car-side", text: "CARS", color: "green", to: "" },
       { icon: "mdi-car-estate", text: "SUVS", color: "orange", to: "" },
@@ -113,7 +101,6 @@ export default {
     ]
   }),
   created() {
-    // this.$vuetify.theme.dark = this.mode;
   }
 };
 </script>
