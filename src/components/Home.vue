@@ -1,5 +1,6 @@
 <template>
   <v-content>
+    
     <v-row>
       <v-col
         class="d-flex flex-row"
@@ -164,11 +165,22 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row>
+      New Content
+      <AddVehicle />
+      <VehicleCard />
+    </v-row>
   </v-content>
 </template>
 
 <script>
+import AddVehicle from './AddVehicle'
+import VehicleCard from './VehiclesCard'
 export default {
+  components: {
+    AddVehicle,
+    VehicleCard
+  },
   data: () => ({
     dialog: false,
     model: 0,

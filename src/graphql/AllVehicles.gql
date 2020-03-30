@@ -1,0 +1,14 @@
+query AllVehicles($searchString: String) {
+  Courses(searchString: $searchString) {
+    make
+    model
+    year
+    topSpeed
+    power
+    weight
+    engine
+    torque
+    sixty
+    price
+  }
+}
