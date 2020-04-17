@@ -2,6 +2,7 @@ query AllVehicles($searchString: String) {
   Vehicles(searchString: $searchString) {
     make
     model
+    image
     year
     topSpeed
     power

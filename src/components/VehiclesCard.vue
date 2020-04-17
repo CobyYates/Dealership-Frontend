@@ -54,6 +54,7 @@
                 >
               </v-card-title>
               <v-card-text>
+                <v-img :src="car.image"></v-img>
                 <p class="text-center title mt-4">Details for this vehicle</p>
                 <v-row>
                   <v-col class="text-right">
@@ -72,23 +73,6 @@
                     <h3>{{ car.top_speed }} mph</h3>
                     <h3>{{ car.weight }} lbs</h3>
                   </v-col>
-                  <!-- <v-divider vertical /> 
-                  <v-col>
-                    <h3>Mileage:</h3>
-                    <h3>Condition:</h3>
-                    <h3>Title:</h3>
-                    <h3>VIN:</h3>
-                    <h3>Transmission:</h3>
-                    <h3>Drive Type:</h3>
-                  </v-col>
-                  <v-col>
-                    <h3>{{ car.mileage }} miles</h3>
-                    <h3>{{ car.condition }}</h3>
-                    <h3>{{ car.title }}</h3>
-                    <h3>{{ car.vin }}</h3>
-                    <h3>{{ car.transmission }}</h3>
-                    <h3>{{ car.driveType }}</h3>
-                  </v-col>-->
                 </v-row>
               </v-card-text>
               <v-card-actions class="d-flex justify-space-around">

@@ -87,11 +87,9 @@
         </v-dialog>
       </v-col>
     </v-row>
-    <v-img>
       <v-col>
-        <v-img class="mx-auto mt-7" :src="vehicle.imgURL" width="600"></v-img>
+        <v-img v-if="vehicle !== null" class="mx-auto mt-7" :src="vehicle.imgURL" width="600"></v-img>
       </v-col>
-    </v-img>
     <v-row v-if="vehicle !== null">
       <v-col cols="4" class="mx-auto mt-12">
         <v-row>

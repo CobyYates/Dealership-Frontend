@@ -52,6 +52,7 @@
                 >
               </v-card-title>
               <v-card-text>
+                <v-img :src="car.image"></v-img>
                 <p class="text-center title mt-4">Details for this vehicle</p>
                 <v-row>
                   <v-col class="text-right">
@@ -124,6 +125,7 @@ export default {
       this.$store.state.vehicles.push(vehicle);
       console.log(this.$store.state.vehicles);
     },
+      
   },
 };
 </script>

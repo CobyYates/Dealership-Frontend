@@ -32,11 +32,11 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app clipped-left color="red" dense>
+    <v-app-bar app dark clipped-left color="red" dense>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-icon class="mx-4">mdi-car-traction-control</v-icon>
+      <v-icon class="mx-4 white--text">mdi-car-traction-control</v-icon>
       <v-toolbar-title class="mr-12 align-center">
-        <span class="title font-weight-light">DRIFTY</span>
+        <span class="title font-weight-light white--text">DRIFTY</span>
       </v-toolbar-title>
       <v-spacer />
       <v-row style="max-width: 150px" class="d-flex">
