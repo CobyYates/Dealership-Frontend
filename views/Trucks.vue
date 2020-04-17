@@ -1,8 +1,7 @@
 <template>
   <!-- Apollo watched Graphql query -->
-  <!-- <ApolloQuery :query="require('../graphql/AllVehicles.gql')" -->
   <ApolloQuery
-    :query="require('../graphql/AllVehicles.gql')"
+    :query="require('../src/graphql/AllVehicles.gql')"
     :variables="{ searchString }"
   >
     <!-- :variables="{ searchString }"> -->
@@ -17,6 +16,7 @@
       <div v-else-if="data" class="result apollo">
         <v-parallax
           height="700"
+          class="mb-12"
           src="https://www.carscoops.com/wp-content/uploads/webp/2020/03/Armytrix-McLaren-650S-.webp"
         >
           <v-overlay absolute>
@@ -29,19 +29,6 @@
             </div>
           </v-overlay>
         </v-parallax>
-        <div class="d-flex flex-column searchSection mb-10">
-          <v-row>
-            <v-col cols="3" class="mx-auto mt-8 d-flex flex-column justify-center">
-              <p class="title white--text" >Choose a Make</p>
-              <v-select
-                :items="$store.state.makes"
-                label="Select Make of Vehicle"
-                solo
-                v-model="searchString"
-              ></v-select>
-            </v-col>
-          </v-row>
-        </div>
         <v-row class="ml-12" id="setWidth">
           <v-col cols="3" v-for="(car, i) in data.Vehicles" :key="i">
             <v-card width="400" min-width="400">
@@ -72,23 +59,6 @@
                     <h3>{{ car.top_speed }} mph</h3>
                     <h3>{{ car.weight }} lbs</h3>
                   </v-col>
-                  <!-- <v-divider vertical /> 
-                  <v-col>
-                    <h3>Mileage:</h3>
-                    <h3>Condition:</h3>
-                    <h3>Title:</h3>
-                    <h3>VIN:</h3>
-                    <h3>Transmission:</h3>
-                    <h3>Drive Type:</h3>
-                  </v-col>
-                  <v-col>
-                    <h3>{{ car.mileage }} miles</h3>
-                    <h3>{{ car.condition }}</h3>
-                    <h3>{{ car.title }}</h3>
-                    <h3>{{ car.vin }}</h3>
-                    <h3>{{ car.transmission }}</h3>
-                    <h3>{{ car.driveType }}</h3>
-                  </v-col>-->
                 </v-row>
               </v-card-text>
               <v-card-actions class="d-flex justify-space-around">
@@ -131,10 +101,9 @@
 </template>
 
 <script>
-//import vue-truncate-filter from 'vue-truncate-filter'
 export default {
   data: () => ({
-    searchString: "",
+    searchString: "truck",
   }),
   methods: {
     updateCart(vehicle) {
@@ -148,7 +117,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #setWidth {
   min-width: 100vw;
   min-height: 100vh;

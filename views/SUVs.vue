@@ -1,8 +1,7 @@
 <template>
   <!-- Apollo watched Graphql query -->
-  <!-- <ApolloQuery :query="require('../graphql/AllVehicles.gql')" -->
   <ApolloQuery
-    :query="require('../graphql/AllVehicles.gql')"
+    :query="require('../src/graphql/AllVehicles.gql')"
     :variables="{ searchString }"
   >
     <!-- :variables="{ searchString }"> -->
@@ -72,23 +71,6 @@
                     <h3>{{ car.top_speed }} mph</h3>
                     <h3>{{ car.weight }} lbs</h3>
                   </v-col>
-                  <!-- <v-divider vertical /> 
-                  <v-col>
-                    <h3>Mileage:</h3>
-                    <h3>Condition:</h3>
-                    <h3>Title:</h3>
-                    <h3>VIN:</h3>
-                    <h3>Transmission:</h3>
-                    <h3>Drive Type:</h3>
-                  </v-col>
-                  <v-col>
-                    <h3>{{ car.mileage }} miles</h3>
-                    <h3>{{ car.condition }}</h3>
-                    <h3>{{ car.title }}</h3>
-                    <h3>{{ car.vin }}</h3>
-                    <h3>{{ car.transmission }}</h3>
-                    <h3>{{ car.driveType }}</h3>
-                  </v-col>-->
                 </v-row>
               </v-card-text>
               <v-card-actions class="d-flex justify-space-around">
@@ -110,7 +92,6 @@
         </v-row>
       </div>
 
-      <!-- No result -->
       <div v-else class="no-result apollo">
         <center>
           <v-row>
@@ -131,10 +112,9 @@
 </template>
 
 <script>
-//import vue-truncate-filter from 'vue-truncate-filter'
 export default {
   data: () => ({
-    searchString: "",
+    searchString: "suv",
   }),
   methods: {
     updateCart(vehicle) {
@@ -147,21 +127,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-#setWidth {
-  min-width: 100vw;
-  min-height: 100vh;
-}
-
-.searchSection {
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    140deg,
-    rgb(48, 48, 48) 0%,
-    rgba(34, 34, 34, 1) 52%,
-    rgba(9, 9, 9, 0.9023984593837535) 100%
-  );
-  height: 200px;
-}
-</style>

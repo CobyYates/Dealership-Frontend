@@ -12,15 +12,6 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <!-- Add Vehicle -->
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
-          </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1"
-            >Add Vehicle</v-list-item-title
-          >
-        </v-list-item>
         <v-subheader class="mt-4 grey--text text--darken-1"
           >FILTERS</v-subheader
         >
@@ -56,10 +47,10 @@
     </v-app-bar>
 
     <v-content>
-      <v-container fluid class="fill-height">
-        <v-row justify="center" align="center">
-          <v-col class="grow" justify="center" align="center">
-            <router-view></router-view>
+      <v-container fluid class="fill-height ma-0 pa-0">
+        <v-row class="ma-0 pa-0">
+          <v-col class="ma-0 pa-0">
+            <router-view class="ma-0 pa-0"></router-view>
           </v-col>
         </v-row>
       </v-container>
@@ -72,6 +63,9 @@ export default {
   props: {
     source: String
   },
+  methods: {
+    
+  },
   data: () => ({
     drawer: null,
     mode: true,
@@ -82,23 +76,12 @@ export default {
         color: "blue",
         to: '/'
       },
-      {
-        icon: "mdi-heart",
-        text: "MY FAVORITES",
-        color: "pink lighten-2",
-        to: "/favorites"
-      },
-      { icon: "mdi-car-side", text: "CARS", color: "green", to: "" },
-      { icon: "mdi-car-estate", text: "SUVS", color: "orange", to: "" },
-      { icon: "mdi-car-pickup", text: "TRUCKS", color: "red", to: "" }
+      { icon: "mdi-car-side", text: "CARS", color: "green", to: "/cars" },
+      { icon: "mdi-car-estate", text: "SUVS", color: "orange", to: "/suvs" },
+      { icon: "mdi-car-pickup", text: "TRUCKS", color: "red", to: "/trucks" },
+      { icon: "mdi-car-pickup", text: "RESTful API", color: "blue", to: "/RESTful" },
+      { icon: "mdi-plus-circle-outline", text: "ADD VEHICLE", color: "red", to: "/add-vehicle" },
     ],
-    items2: [
-      { picture: 28, text: "Joseph" },
-      { picture: 38, text: "Apple" },
-      { picture: 48, text: "Xbox Ahoy" },
-      { picture: 58, text: "Nokia" },
-      { picture: 78, text: "MKBHD" }
-    ]
   }),
   created() {
   }

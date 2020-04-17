@@ -1,14 +1,15 @@
 mutation AddVehicle(
   $make: String!
   $model: String!
-  $year: Int!
-  $topSpeed: Int
-  $power: Int
-  $weight: Int
+  $year: String!
+  $topSpeed: String
+  $power: String
+  $weight: String
   $engine: String
-  $torque: Int
-  $sixty: Float
-  $price: Int
+  $torque: String
+  $sixty: String
+  $price: String
+  $vtype: String
 ) {
   createVehicle(
     make: $make
@@ -21,6 +22,7 @@ mutation AddVehicle(
     torque: $torque
     sixty: $sixty
     price: $price
+    vtype: $vtype
   ) {
     id
   }

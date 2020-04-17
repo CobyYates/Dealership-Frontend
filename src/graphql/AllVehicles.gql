@@ -1,5 +1,5 @@
 query AllVehicles($searchString: String) {
-  Courses(searchString: $searchString) {
+  Vehicles(searchString: $searchString) {
     make
     model
     year
@@ -10,5 +10,6 @@ query AllVehicles($searchString: String) {
     torque
     sixty
     price
+    vtype
   }
 }
