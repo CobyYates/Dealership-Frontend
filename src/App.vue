@@ -2,7 +2,8 @@
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app clipped disable-resize-watcher temporary>
       <v-list dense>
-        <v-list-item :to="item.to" v-for="item in items" :key="item.text" link>
+        <v-subheader class="mt-4 grey--text text--darken-1">GraphQL API</v-subheader>
+        <v-list-item :to="item.to" v-for="item in items" :key="item.i" link>
           <v-list-item-action>
             <v-icon :color="item.color">{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -12,9 +13,18 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-subheader class="mt-4 grey--text text--darken-1"
-          >FILTERS</v-subheader
-        >
+        <v-divider></v-divider>
+        <v-subheader class="mt-4 grey--text text--darken-1">RESTful API</v-subheader>
+        <v-list-item :to="item.to" v-for="item in rest" :key="item.i" link>
+          <v-list-item-action>
+            <v-icon :color="item.color">{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ item.text }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-spacer/>
         <v-list-item>
           <v-switch v-model="$vuetify.theme.dark" primary color="red" label="Dark Mode"/>
@@ -70,18 +80,16 @@ export default {
     drawer: null,
     mode: true,
     items: [
-      {
-        icon: "mdi-car-multiple",
-        text: "ALL VEHICLES",
-        color: "blue",
-        to: '/'
-      },
+      { icon: "mdi-car-multiple", text: "ALL VEHICLES", color: "blue", to: '/'},
       { icon: "mdi-car-side", text: "CARS", color: "green", to: "/cars" },
       { icon: "mdi-car-estate", text: "SUVS", color: "orange", to: "/suvs" },
       { icon: "mdi-car-pickup", text: "TRUCKS", color: "red", to: "/trucks" },
-      { icon: "mdi-car-pickup", text: "RESTful API", color: "blue", to: "/RESTful" },
-      { icon: "mdi-plus-circle-outline", text: "ADD VEHICLE", color: "red", to: "/add-vehicle" },
+      { icon: "mdi-graphql", text: "ADD VEHICLE", color: "blue", to: "/add-vehicle" }      
     ],
+    rest: [
+      { icon: "mdi-car-pickup", text: "ALL VEHICLES", color: "blue", to: "/RESTful" },
+      { icon: "mdi-api", text: "ADD VEHICLE", color: "purple", to: "/add-restful" },
+    ]
   }),
   created() {
   }

@@ -59,7 +59,7 @@
             </v-col>
           </v-row>
         </v-container>
-        <v-dialog v-model="deleteDialog" max-width="290">
+        <v-dialog v-model="deleteDialog" v-if="vehicle !== null" max-width="290">
           <v-card>
             <v-card-title class="headline"
               >Delete Vehicle?</v-card-title
@@ -245,7 +245,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="(dialog = false), updateVehicle(vehicle._id)"
+            @click="(dialog = false), updateVehicle(vehicle.price)"
           >
             Update
           </v-btn>
@@ -261,6 +261,7 @@ export default {
   data: () => ({
     vehicle: null,
     dialog: false,
+    dollar: null,
     deleteDialog: false,
     valid: false,
     four: "####",
@@ -321,7 +322,6 @@ export default {
       this.$refs.form.resetValidation();
     },
     updateVehicle() {
-      console.log(this.vehicle.price);
       axios({
         method: "post",
         url: `${process.env.VUE_APP_UPDATE}?&make=${this.vehicle.make}&model=${this.vehicle.model}&torque=${this.vehicle.torque}&engine=${this.vehicle.engine}&sixty=${this.vehicle.sixty}&topSpeed=${this.vehicle.topSpeed}&hp=${this.vehicle.hp}&weight=${this.vehicle.weight}&year=${this.vehicle.year}&id=${this.vehicle._id}&price=${this.vehicle.price}`,
@@ -355,6 +355,7 @@ export default {
       .then((response) => {
         console.log(response.data);
         this.vehicle = response.data;
+        this.dollar = this.vehicle.price
       });
   },
 };
