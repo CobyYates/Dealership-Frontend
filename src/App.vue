@@ -80,14 +80,14 @@ export default {
     drawer: null,
     mode: true,
     items: [
-      { icon: "mdi-car-multiple", text: "ALL VEHICLES", color: "blue", to: '/'},
-      { icon: "mdi-car-side", text: "CARS", color: "green", to: "/cars" },
-      { icon: "mdi-car-estate", text: "SUVS", color: "orange", to: "/suvs" },
-      { icon: "mdi-car-pickup", text: "TRUCKS", color: "red", to: "/trucks" },
+      { icon: "mdi-graphql", text: "ALL VEHICLES", color: "blue", to: '/'},
+      { icon: "mdi-graphql", text: "CARS", color: "green", to: "/cars" },
+      { icon: "mdi-graphql", text: "SUVS", color: "orange", to: "/suvs" },
+      { icon: "mdi-graphql", text: "TRUCKS", color: "red", to: "/trucks" },
       { icon: "mdi-graphql", text: "ADD VEHICLE", color: "blue", to: "/add-vehicle" }      
     ],
     rest: [
-      { icon: "mdi-car-pickup", text: "ALL VEHICLES", color: "blue", to: "/RESTful" },
+      { icon: "mdi-api", text: "ALL VEHICLES", color: "blue", to: "/RESTful" },
       { icon: "mdi-api", text: "ADD VEHICLE", color: "purple", to: "/add-restful" },
     ]
   }),

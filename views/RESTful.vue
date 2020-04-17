@@ -27,9 +27,10 @@
           <v-card
             dark
             class="mx-2 d-flex flex-column justify-space-between"
-            width="350"
-            height="340"
+            width="400"
+            height="530"
           >
+            <v-img :src="vehicle.imgURL"></v-img>
             <v-card-text>
               <p class="headline">{{ vehicle.make }} {{ vehicle.model }}</p>
               <p class="title">${{ vehicle.price }}</p>

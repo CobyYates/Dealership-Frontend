@@ -59,11 +59,13 @@
             </v-col>
           </v-row>
         </v-container>
-        <v-dialog v-model="deleteDialog" v-if="vehicle !== null" max-width="290">
+        <v-dialog
+          v-model="deleteDialog"
+          v-if="vehicle !== null"
+          max-width="290"
+        >
           <v-card>
-            <v-card-title class="headline"
-              >Delete Vehicle?</v-card-title
-            >
+            <v-card-title class="headline">Delete Vehicle?</v-card-title>
 
             <v-card-text>
               Are you sure you want delete {{ vehicle.make }}
@@ -85,7 +87,11 @@
         </v-dialog>
       </v-col>
     </v-row>
-
+    <v-img>
+      <v-col>
+        <v-img class="mx-auto mt-7" :src="vehicle.imgURL" width="600"></v-img>
+      </v-col>
+    </v-img>
     <v-row v-if="vehicle !== null">
       <v-col cols="4" class="mx-auto mt-12">
         <v-row>
@@ -143,6 +149,31 @@
         <p class="display-1 text-center mx-auto pt-7">
           Editing {{ vehicle.make }} {{ vehicle.model }}
         </p>
+        <v-container>
+          <v-skeleton-loader
+            class="mx-auto"
+            width="400"
+            v-if="vehicle.imgURL == ''"
+            type="image"
+          ></v-skeleton-loader>
+          <v-img
+            v-else
+            class="mx-auto"
+            :src="vehicle.imgURL"
+            width="400"
+          ></v-img>
+          <v-row>
+            <v-col cols="10" class="mx-auto">
+              <v-text-field
+                v-model="vehicle.imgURL"
+                solo
+                dense
+                label="Image URL"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+        </v-container>
+
         <v-container>
           <v-row>
             <v-col cols="10" class="mx-auto">
@@ -252,16 +283,23 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <snackbar :snackbar="this.snackbar" :message="this.message" />
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
+import snackbar from "../src/components/Snackbar";
 export default {
+  components: {
+    snackbar,
+  },
   data: () => ({
     vehicle: null,
     dialog: false,
     dollar: null,
+    snackbar: false,
+    message: null,
     deleteDialog: false,
     valid: false,
     four: "####",
@@ -322,9 +360,11 @@ export default {
       this.$refs.form.resetValidation();
     },
     updateVehicle() {
+      this.message = "Vehicle Updated";
+      this.snackbar = true;
       axios({
         method: "post",
-        url: `${process.env.VUE_APP_UPDATE}?&make=${this.vehicle.make}&model=${this.vehicle.model}&torque=${this.vehicle.torque}&engine=${this.vehicle.engine}&sixty=${this.vehicle.sixty}&topSpeed=${this.vehicle.topSpeed}&hp=${this.vehicle.hp}&weight=${this.vehicle.weight}&year=${this.vehicle.year}&id=${this.vehicle._id}&price=${this.vehicle.price}`,
+        url: `${process.env.VUE_APP_UPDATE}?&imgURL=${this.vehicle.imgURL}&make=${this.vehicle.make}&model=${this.vehicle.model}&torque=${this.vehicle.torque}&engine=${this.vehicle.engine}&sixty=${this.vehicle.sixty}&topSpeed=${this.vehicle.topSpeed}&hp=${this.vehicle.hp}&weight=${this.vehicle.weight}&year=${this.vehicle.year}&id=${this.vehicle._id}&price=${this.vehicle.price}`,
       }).then(
         (response) => {
           console.log(response);
@@ -333,14 +373,15 @@ export default {
       );
     },
     deleteVehicle() {
-      console.log(process.env.VUE_APP_DELETE_VEHICLE)
+      this.message = "Vehicle Updated";
+      this.snackbar = true;
       axios({
         method: "post",
-        url: `${process.env.VUE_APP_DELETE_VEHICLE}${this.$route.params.id}`
-      })
-      this.deleteDialog = false
-      this.$router.push('/RESTful')
-    }
+        url: `${process.env.VUE_APP_DELETE_VEHICLE}${this.$route.params.id}`,
+      });
+      this.deleteDialog = false;
+      this.$router.push("/RESTful");
+    },
   },
   watch: {
     search(val) {
@@ -349,13 +390,11 @@ export default {
   },
   mounted() {
     axios
-      .get(
-        `${process.env.VUE_APP_ONE}${this.$route.params.id}`          
-      )
+      .get(`${process.env.VUE_APP_ONE}${this.$route.params.id}`)
       .then((response) => {
         console.log(response.data);
         this.vehicle = response.data;
-        this.dollar = this.vehicle.price
+        this.dollar = this.vehicle.price;
       });
   },
 };
