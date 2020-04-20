@@ -62,9 +62,6 @@ export default {
       val || this.close();
     }
   },
-//   created() {
-//     this.initialize();
-//   },
   methods: {
     getColor(approve) {
       return approve ? "green" : "red";

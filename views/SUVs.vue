@@ -1,18 +1,11 @@
 <template>
-  <!-- Apollo watched Graphql query -->
   <ApolloQuery
     :query="require('../src/graphql/AllVehicles.gql')"
     :variables="{ searchString }"
   >
-    <!-- :variables="{ searchString }"> -->
     <template v-slot="{ result: { loading, error, data } }">
-      <!-- Loading -->
       <div v-if="loading" class="loading apollo">Loading...</div>
-
-      <!-- Error -->
       <div v-else-if="error" class="error apollo">An error occured</div>
-
-      <!-- Result -->
       <div v-else-if="data" class="result apollo">
         <v-parallax
           height="700"
@@ -118,11 +111,9 @@ export default {
   }),
   methods: {
     updateCart(vehicle) {
-      console.log(vehicle);
       this.$store.state.cartItems++;
       this.$store.state.showCartItems = true;
       this.$store.state.vehicles.push(vehicle);
-      console.log(this.$store.state.vehicles);
     },
   },
 };

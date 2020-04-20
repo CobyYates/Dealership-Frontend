@@ -193,10 +193,9 @@ export default {
   },
   methods: {
     addVehicle() {
-    //   axios.post(`${process.env.VUE_APP_CREATE_VEHICLE}?&make=${this.make}&imageURL=${this.image}&model=${this.model}&torque=${this.torque}&engine=${this.engine}&sixty=${this.sixty}&topSpeed=${this.topSpeed}&hp=${this.hp}&weight=${this.weight}&year=${this.year}&price=${this.price}`);
         this.snackbar = true 
         this.message = 'Vehicle Added'
-      axios.post(`https://dealership-restful.herokuapp.com/admin/add-product/?&make=${this.make}&model=${this.model}&torque=${this.torque}&engine=${this.engine}&sixty=${this.sixty}&topSpeed=${this.topSpeed}&hp=${this.hp}&weight=${this.weight}&year=${this.year}&price=${this.price}&imgURL=${this.images}`);
+      axios.post(`${process.env.VUE_APP_ADD_VEHICLE}&make=${this.make}&model=${this.model}&torque=${this.torque}&engine=${this.engine}&sixty=${this.sixty}&topSpeed=${this.topSpeed}&hp=${this.hp}&weight=${this.weight}&year=${this.year}&price=${this.price}&imgURL=${this.images}`);
     },
     querySelections(v) {
       this.loading = true;
@@ -222,7 +221,3 @@ export default {
   },
 };
 </script>
-
-
-
-https://dealership-restful.herokuapp.com/admin/add-product/?&make=Acura&model=sadf&torque=5165&engine=V4&sixty=5.1&topSpeed=123&hp=undefined&weight=561&year=2012&price=12.31

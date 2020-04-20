@@ -107,11 +107,9 @@ export default {
   }),
   methods: {
     updateCart(vehicle) {
-      console.log(vehicle);
       this.$store.state.cartItems++;
       this.$store.state.showCartItems = true;
       this.$store.state.vehicles.push(vehicle);
-      console.log(this.$store.state.vehicles);
     },
   },
 };

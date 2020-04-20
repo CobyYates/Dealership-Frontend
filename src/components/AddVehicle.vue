@@ -209,9 +209,6 @@ export default {
         this.loading = false;
       }, 500);
     },
-    test() {
-      console.log(this.vehicle);
-    },
     onDone() {
       return console.log("Done");
     },

@@ -1,5 +1,4 @@
 <template>
-  <!-- <v-container class="mx-auto mt-12"> -->
   <v-container fluid>
     <v-parallax
       height="700"

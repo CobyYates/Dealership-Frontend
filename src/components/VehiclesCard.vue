@@ -1,6 +1,4 @@
 <template>
-  <!-- Apollo watched Graphql query -->
-  <!-- <ApolloQuery :query="require('../graphql/AllVehicles.gql')" -->
   <ApolloQuery
     :query="require('../graphql/AllVehicles.gql')"
     :variables="{ searchString }"
@@ -90,7 +88,6 @@
         </v-row>
       </div>
 
-      <!-- No result -->
       <div v-else class="no-result apollo">
         <center>
           <v-row>
@@ -111,14 +108,12 @@
 </template>
 
 <script>
-//import vue-truncate-filter from 'vue-truncate-filter'
 export default {
   data: () => ({
     searchString: "",
   }),
   methods: {
     updateCart(vehicle) {
-      // console.log(vehicle);
       this.$store.state.cartItems++;
       this.$store.state.showCartItems = true;
       this.$store.state.vehicles.push(vehicle);

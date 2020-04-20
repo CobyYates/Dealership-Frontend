@@ -26,7 +26,6 @@
             </v-col>
           </v-row>
           <form>
-            <!-- <form v-on:submit.prevent="mutate()"> -->
             <v-row>
               <v-col cols="12" xs="12" sm="6" md="6">
                 <v-select
@@ -192,9 +191,6 @@ export default {
       modelRules: [(v) => !!v || "Model is required"],
     };
   },
-  mounted() {
-    console.log(this.$store.state.editedVehicle);
-  },
   methods: {
       async deleteVehicle() {
         await this.$apollo.mutate({
@@ -220,9 +216,6 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation();
-    },
-    test() {
-      console.log(this.vehicle);
     },
   },
 };
