@@ -306,7 +306,7 @@ export default {
     money: {
       decimal: ".",
       thousands: ",",
-      precision: 2,
+      precision: 0,
       masked: false,
     },
     images: "",

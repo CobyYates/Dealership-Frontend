@@ -6,6 +6,8 @@ import Vehicle from "../views/Vehicle.vue";
 import Trucks from "../views/Trucks.vue";
 import SUVs from "../views/SUVs.vue";
 import Cars from "../views/Cars.vue";
+import View from "../views/View.vue";
+import Edit from "../views/Edit.vue";
 import AddRESTfulVehicle from "../views/AddRESTfulVehicle.vue";
 
 export const routes = [
@@ -17,5 +19,7 @@ export const routes = [
          { path: "/trucks", component: Trucks },
          { path: "/suvs", component: SUVs },
          { path: "/cars", component: Cars },
+         { path: "/view/:id", component: View },
+         { path: "/edit/:id", component: Edit },
          { path: "/add-restful", component: AddRESTfulVehicle },
        ];

@@ -1,8 +1,9 @@
-mutation createVehicle(
+mutation updateOneVehicle(
   $make: String!
   $model: String!
   $year: String!
   $topSpeed: String
+  $id: String
   $power: String
   $weight: String
   $engine: String
@@ -12,9 +13,12 @@ mutation createVehicle(
   $vtype: String
   $image: String
 ) {
-  createVehicle(
+  updateOneVehicle(
+    where: { id: $id }
+    data: {
       make: $make
       model: $model
+      id: $id
       year: $year
       topSpeed: $topSpeed
       power: $power
@@ -25,8 +29,8 @@ mutation createVehicle(
       price: $price
       vtype: $vtype
       image: $image
+    }
   ) {
     id
-    make
   }
 }

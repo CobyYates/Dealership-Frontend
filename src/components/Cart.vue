@@ -51,8 +51,8 @@ export default {
       { text: "Image", value: "image", sortable: false },
       { text: "Make", value: "make", sortable: true },
       { text: "Model", value: "model", sortable: false },
-      { text: "Miles", value: "mileage", sortable: false },
-      { text: "Title", value: "title", sortable: false },
+      { text: "Year", value: "year", sortable: false },
+      { text: "Price", value: "price", sortable: false },
       { text: "Actions", value: "action", sortable: false }
     ]
   }),
@@ -83,7 +83,7 @@ export default {
     },
     deleteItem(item) {
       const index = this.$store.state.vehicles.indexOf(item);
-      confirm("Are you sure you want to delete this student?") &&
+      confirm("Are you sure you want to delete this vehicle?") &&
         this.$store.state.vehicles.splice(index, 1);
       this.$store.state.cartItems--;
       if (this.$store.state.cartItems < 1 ) {
@@ -98,7 +98,7 @@ export default {
         this.editedIndex = -1;
       }, 300);
     }
-  }
+  },
 };
 </script>
 

@@ -156,10 +156,10 @@ export default {
       money: {
         decimal: ".",
         thousands: ",",
-        precision: 2,
+        precision: 0,
         masked: false,
       },
-      images: "",
+      images: null,
       years: [
         "2010",
         "2011",
@@ -196,7 +196,7 @@ export default {
     //   axios.post(`${process.env.VUE_APP_CREATE_VEHICLE}?&make=${this.make}&imageURL=${this.image}&model=${this.model}&torque=${this.torque}&engine=${this.engine}&sixty=${this.sixty}&topSpeed=${this.topSpeed}&hp=${this.hp}&weight=${this.weight}&year=${this.year}&price=${this.price}`);
         this.snackbar = true 
         this.message = 'Vehicle Added'
-      axios.post(`https://dealership-restful.herokuapp.com/admin/add-product/?&make=${this.make}&model=${this.model}&torque=${this.torque}&engine=${this.engine}&sixty=${this.sixty}&topSpeed=${this.topSpeed}&hp=${this.hp}&weight=${this.weight}&year=${this.year}&price=${this.price}`);
+      axios.post(`https://dealership-restful.herokuapp.com/admin/add-product/?&make=${this.make}&model=${this.model}&torque=${this.torque}&engine=${this.engine}&sixty=${this.sixty}&topSpeed=${this.topSpeed}&hp=${this.hp}&weight=${this.weight}&year=${this.year}&price=${this.price}&imgURL=${this.images}`);
     },
     querySelections(v) {
       this.loading = true;

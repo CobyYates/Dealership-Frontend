@@ -28,7 +28,7 @@
             dark
             class="mx-2 d-flex flex-column justify-space-between"
             width="400"
-            height="530"
+            height="525"
           >
             <v-img :src="vehicle.imgURL"></v-img>
             <v-card-text>
@@ -36,7 +36,7 @@
               <p class="title">${{ vehicle.price }}</p>
               <div class="text--primary">
                 <v-row>
-                  <v-col class="text-right">
+                  <v-col class="text-right pb-0">
                     <h3>Power:</h3>
                     <h3>Torque:</h3>
                     <h3>Engine:</h3>
@@ -44,7 +44,7 @@
                     <h3>Top Speed:</h3>
                     <h3>Weight:</h3>
                   </v-col>
-                  <v-col class="text-left">
+                  <v-col class="text-left pb-0">
                     <h3>{{ vehicle.hp }} hp</h3>
                     <h3>{{ vehicle.torque }} foot lbs</h3>
                     <h3>{{ vehicle.engine }}</h3>

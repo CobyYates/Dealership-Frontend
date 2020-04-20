@@ -9,6 +9,7 @@ export default new Vuex.Store({
     cartItems: 0,
     showCartItems: false,
     darkMode: true,
+    editedVehicle: null,
     vehicles: [],
     makes: [
       "Acura",
@@ -50,5 +51,14 @@ export default new Vuex.Store({
       "Volvo",
     ],
   },
-  getters: {},
+  mutations: {
+    editVehicle(state, vehicle) {
+      state.editedVehicle = vehicle
+    },
+  },
+  actions: {
+    editVehicle(context, vehicle) {
+      context.commit('editVehicle', vehicle)
+    }
+  }
 });

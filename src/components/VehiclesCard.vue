@@ -5,15 +5,11 @@
     :query="require('../graphql/AllVehicles.gql')"
     :variables="{ searchString }"
   >
-    <!-- :variables="{ searchString }"> -->
     <template v-slot="{ result: { loading, error, data } }">
-      <!-- Loading -->
       <div v-if="loading" class="loading apollo">Loading...</div>
 
-      <!-- Error -->
       <div v-else-if="error" class="error apollo">An error occured</div>
 
-      <!-- Result -->
       <div v-else-if="data" class="result apollo">
         <v-parallax
           height="700"
@@ -42,9 +38,9 @@
             </v-col>
           </v-row>
         </div>
-        <v-row class="ml-12" id="setWidth">
+        <v-row class="ml-8 mb-12" id="setWidth">
           <v-col cols="3" v-for="(car, i) in data.Vehicles" :key="i">
-            <v-card width="400" min-width="400">
+            <v-card width="400" min-width="400" height="580" class="d-flex flex-column justify-space-between">
               <v-card-title class="d-flex justify-center">
                 <span class="headline"
                   >{{ car.year }} {{ car.make }} {{ car.model }}
@@ -54,7 +50,7 @@
                 >
               </v-card-title>
               <v-card-text>
-                <v-img :src="car.image"></v-img>
+                <v-img :src="car.image" max-height="200"></v-img>
                 <p class="text-center title mt-4">Details for this vehicle</p>
                 <v-row>
                   <v-col class="text-right">
@@ -81,11 +77,11 @@
                   dark
                   color="red lighten-1"
                   text
-                  @click="updateCart"
+                  @click="updateCart(car)"
                 >
                   <v-icon left>mdi-cart-outline</v-icon> Add to cart
                 </v-btn>
-                <v-btn color="green darken-1" text @click="dialog = false"
+                <v-btn color="green darken-1" text @click="editVehicle(car)"
                   >View Vehicle</v-btn
                 >
               </v-card-actions>
@@ -122,12 +118,15 @@ export default {
   }),
   methods: {
     updateCart(vehicle) {
-      console.log(vehicle);
+      // console.log(vehicle);
       this.$store.state.cartItems++;
       this.$store.state.showCartItems = true;
       this.$store.state.vehicles.push(vehicle);
-      console.log(this.$store.state.vehicles);
     },
+    editVehicle(car) {
+      this.$store.dispatch('editVehicle', car)
+      this.$router.push(`/edit/${car.id}`)
+    }
   },
 };
 </script>

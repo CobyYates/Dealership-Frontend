@@ -1,5 +1,6 @@
 query AllVehicles($searchString: String) {
   Vehicles(searchString: $searchString) {
+    id
     make
     model
     image
